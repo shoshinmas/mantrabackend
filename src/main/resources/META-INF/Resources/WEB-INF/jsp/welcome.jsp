@@ -4,8 +4,8 @@
     <title>Welcome Page</title>
 </head>
 <body>
-<div>Welcome to Mantra</div>
 <div class="container">
+    <div>Welcome to Mantra</div>
     <h1>Welcome ${name}</h1>
     <a href="list-todos">Manage</a> your todos
 </div>

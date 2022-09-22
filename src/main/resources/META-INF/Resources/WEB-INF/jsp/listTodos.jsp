@@ -4,7 +4,7 @@
     <link href="../webjars/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
-<div>
+<div class="container">
     <h1>Your Todos lll</h1>
     <table class="table">
         <thead>
@@ -26,6 +26,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <a href="add-todo" class="btn btn-success">Add Todo</a>
 
 </div>
 <script src="../webjars/bootstrap/5.2.0/js/bootstrap.min.js"></script>
