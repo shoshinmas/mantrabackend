@@ -1,34 +1,60 @@
 package com.mantra.backendside;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
+import java.util.function.Function;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
-import java.util.function.Function;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SpringSecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
 
-        Function<String, String> encoder = input -> passwordEncoder().encode(input);
 
+
+        String username = "mantra";
+        String password = "dummy";
+
+        UserDetails user = createNewUser(username, password);
+        return new InMemoryUserDetailsManager(user);
+    }
+
+    private UserDetails createNewUser(String username, String password) {
+        Function<String, String> encoder = input -> passwordEncoder().encode(input);
         UserDetails user = User.builder().passwordEncoder(
                         encoder
                 )
-                .username("mantra")
-                .password("dummy")
+                .username(username)
+                .password(password)
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(user);
+        return user;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        http.authorizeHttpRequests(
+                auth -> auth.anyRequest().authenticated());
+        http.formLogin(withDefaults());
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+
+        return http.build();
     }
 }
