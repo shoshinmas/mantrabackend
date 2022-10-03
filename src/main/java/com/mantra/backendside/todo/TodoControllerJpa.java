@@ -40,6 +40,8 @@ public class TodoControllerJpa {
     public String showNewTodoPage(ModelMap model) {
         String username = getLoggedInUsername(model);
         Todo todo = new Todo();
+        //Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
+        todo.setUsername(username);
         model.put("todo", todo);
         return "todo";
     }
