@@ -13,15 +13,6 @@ import java.time.LocalDate;
 @Entity
 public class Todo {
 
-    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
-        super();
-        this.id = id;
-        this.username = username;
-        this.description = description;
-        this.targetDate = targetDate;
-        this.done = done;
-    }
-
     @Id
     @GeneratedValue
     private int id;
