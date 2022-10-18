@@ -14,47 +14,47 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+//@Configuration
 public class SpringSecurityConfiguration {
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
+//    @Bean
+//    public InMemoryUserDetailsManager userDetailsService() {
+//
+//
+//
+//        String username = "mantra";
+//        String password = "dummy";
+//
+//        UserDetails user = createNewUser(username, password);
+//        return new InMemoryUserDetailsManager(user);
+//    }
+//
+//    private UserDetails createNewUser(String username, String password) {
+//        Function<String, String> encoder = input -> passwordEncoder().encode(input);
+//        UserDetails user = User.builder().passwordEncoder(
+//                        encoder
+//                )
+//                .username(username)
+//                .password(password)
+//                .roles("USER")
+//                .build();
+//        return user;
+//    }
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
-
-
-        String username = "mantra";
-        String password = "dummy";
-
-        UserDetails user = createNewUser(username, password);
-        return new InMemoryUserDetailsManager(user);
-    }
-
-    private UserDetails createNewUser(String username, String password) {
-        Function<String, String> encoder = input -> passwordEncoder().encode(input);
-        UserDetails user = User.builder().passwordEncoder(
-                        encoder
-                )
-                .username(username)
-                .password(password)
-                .roles("USER")
-                .build();
-        return user;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        http.authorizeHttpRequests(
-                auth -> auth.anyRequest().authenticated());
-        http.formLogin(withDefaults());
-
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-
-        return http.build();
-    }
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//
+//        http.authorizeHttpRequests(
+//                auth -> auth.anyRequest().authenticated());
+//        http.formLogin(withDefaults());
+//
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
+//
+//        return http.build();
+//    }
 }
