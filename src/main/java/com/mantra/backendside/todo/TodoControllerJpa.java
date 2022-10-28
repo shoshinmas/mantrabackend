@@ -85,8 +85,9 @@ public class TodoControllerJpa {
     }
 
 
-    @RequestMapping(value="/todo/{id}", method = RequestMethod.GET)
-    public HttpEntity<Todo> sendJsonTodo(@PathVariable int id) {
+    @CrossOrigin(origins="*")
+    @RequestMapping(value="/todo/{username}/{id}", method = RequestMethod.GET)
+    public HttpEntity<Todo> sendJsonTodo(@PathVariable int id, @PathVariable String username) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Origin", "*");
         headers.add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");

@@ -5,6 +5,11 @@
 
     <form:form method="post" modelAttribute="todo">
         <fieldset class="mb-3">
+            <form:label path="firstname">First name</form:label>
+            <form:input type="text" path="firstname" required="required"/>
+            <form:errors path="firstname" cssClass="text-warning"/>
+        </fieldset>
+        <fieldset class="mb-3">
             <form:label path="description">Description</form:label>
             <form:input type="text" path="description" required="required"/>
             <form:errors path="description" cssClass="text-warning"/>
